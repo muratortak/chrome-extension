@@ -11,9 +11,14 @@ if(article){
     const readingTime = Math.round(wordCount/200);
     const badge = document.createElement("p");
     badge.classList.add("color-secondary-text", "type--caption");
-    httpFetch().then(x => {
-        badge.textContent = `${x} min read`;
-    })
+    console.log(text);
+    var body = document.querySelector("body");
+    var parsedDoc = readable(document);
+    console.log("parsed main content: ", parsedDoc.content);
+    body.innerHTML = parsedDoc.content;
+    // httpFetch().then(x => {
+    //     badge.textContent = `${x} min read`;
+    // })
     
     const heading = article.querySelector("h1");
     const date = article.querySelector("time")?.parentNode;
@@ -47,8 +52,10 @@ function httpFetch() {
     .then(data => {console.log(data.choices[0].text); data.choices[0].text})
 }
 
-function findHtmlDensity() {
-
+function readable(doc) {
+    var reader = new Readability(doc);
+    let article = reader.parse();
+    console.log("Parsed it: ", article);
+    return article;
 }
-
 
