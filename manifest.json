@@ -5,7 +5,7 @@
     "description": "Add teh reading time to chrome extension documentation articles",
     "content_scripts":[
         {
-            "js":["scripts/content.js"],
+            "js":["scripts/Readability.js", "scripts/content.js"],
             "matches": [
                 "https://developer.chrome.com/docs/extensions/*",
                 "https://developer.chrome.com/docs/webstore/*"
